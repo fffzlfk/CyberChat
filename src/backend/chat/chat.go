@@ -84,7 +84,7 @@ func (c *Chat) disconnect(user *User) {
 		delete(c.users, user.Username)
 
 		body := fmt.Sprintf("%s 离开了聊天\n", user.Username)
-		c.boardcasts(NewMessage(body, "Server"))
+		c.boardcasts(NewMessage(body, "系统"))
 		log.Printf("%s left the chat, Total: %d\n", user.Username, len(c.users))
 	}
 }

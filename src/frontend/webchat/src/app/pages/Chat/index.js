@@ -80,7 +80,10 @@ export class Chat extends React.Component {
 
     sendMessage() {
         const { ws, message } = this.state;
-
+        if (message === '') {
+            alert("消息不能为空!");
+            return;
+        }
         ws.send(message);
         this.setMessage('');
     }
