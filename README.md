@@ -11,7 +11,7 @@
 1. go or Docker Engine
 2. npm
 
-## Use on Docker
+## Deploy backend on Docker
 
 - Pull image from the command line:
 
@@ -23,6 +23,14 @@ docker pull docker.pkg.github.com/fffzlfk/cyberchat/backend:0.1
 
 ```dockerfile
 FROM docker.pkg.github.com/fffzlfk/cyberchat/backend:0.1
+```
+
+## Backend
+
+```bash
+cd src/backend
+
+go run main.go [-p $port]   # -p为可选参数 用来指定端口号，默认为8080
 ```
 
 ## Frontend

@@ -105,6 +105,7 @@ func Start(port string) {
 
 	http.HandleFunc("/chat", c.Handler)
 
+	// 启动Goroutine，一直监听
 	go c.Run()
 
 	log.Fatal(http.ListenAndServe(port, nil))

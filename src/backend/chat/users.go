@@ -15,6 +15,7 @@ type User struct {
 
 func (u *User) Read() {
 	for {
+		// ReadMessage()是阻塞的
 		if _, message, err := u.Conn.ReadMessage(); err != nil {
 			log.Println("Error on read message:", err.Error())
 			u.Global.leave <- u
