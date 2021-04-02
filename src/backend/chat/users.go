@@ -21,7 +21,7 @@ func (u *User) Read() {
 			u.Global.leave <- u
 			return
 		} else {
-			u.Global.messages <- NewMessage(string(message), u.Username)
+			u.Global.messages <- NewMessage(string(message), u.Username, MESSAGE, len(u.Global.users))
 		}
 	}
 }

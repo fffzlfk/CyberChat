@@ -11,6 +11,7 @@ export class Chat extends React.Component {
         super(props);
         this.state = {
             ws: undefined,
+            count: 0,
             username: '',
             message: '',
             messages: [],
@@ -19,11 +20,12 @@ export class Chat extends React.Component {
     }
 
     render() {
-        const { ws, messages } = this.state;
+        const { ws, messages, count } = this.state;
 
         return (
             <div className="chat">
                 <h1>CyberChat</h1>
+                <h2>当前人数: {count}</h2>
                 <Status status={ws ? "connected" : "disconnected"}/>
 
                 {
@@ -74,12 +76,12 @@ export class Chat extends React.Component {
         ws.onerror = error => {
             console.log("WebSocket error", {error})
         }
-
         this.setState({ws, username: ''});
     }
 
     sendMessage() {
         const { ws, message } = this.state;
+        
         if (message === '') {
             alert("消息不能为空!");
             return;
@@ -101,7 +103,11 @@ export class Chat extends React.Component {
     }
 
     setMessages(value) {
-        let messages = this.state.messages.concat([JSON.parse(value)]);
-        this.setState({messages});
+        let {count} = this.state;
+        const msg = JSON.parse(value);
+        console.log(msg);
+        count = msg.usercount
+        let messages = this.state.messages.concat([msg]);
+        this.setState({messages, count});
     }
 }

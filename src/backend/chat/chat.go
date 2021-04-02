@@ -66,7 +66,7 @@ func (c *Chat) add(user *User) {
 	if _, ok := c.users[user.Username]; !ok {
 		c.users[user.Username] = user
 		body := fmt.Sprintf("%s 加入了聊天\n", user.Username)
-		c.boardcasts(NewMessage(body, "系统"))
+		c.boardcasts(NewMessage(body, "系统", JOIN, len(c.users)))
 		log.Printf("Added user: %s, Total: %d\n", user.Username, len(c.users))
 	}
 }
@@ -84,7 +84,7 @@ func (c *Chat) disconnect(user *User) {
 		delete(c.users, user.Username)
 
 		body := fmt.Sprintf("%s 离开了聊天\n", user.Username)
-		c.boardcasts(NewMessage(body, "系统"))
+		c.boardcasts(NewMessage(body, "系统", LEVAE, len(c.users)))
 		log.Printf("%s left the chat, Total: %d\n", user.Username, len(c.users))
 	}
 }
@@ -103,10 +103,10 @@ func Start(port string) {
 		writer.Write([]byte("Welcome to WebChat"))
 	})
 
-	http.HandleFunc("/chat", c.Handler)
-
 	// 启动Goroutine，一直监听
 	go c.Run()
+
+	http.HandleFunc("/chat", c.Handler)
 
 	log.Fatal(http.ListenAndServe(port, nil))
 }
