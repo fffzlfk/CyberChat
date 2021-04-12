@@ -4,6 +4,9 @@ import { Message } from "../../components/Message"
 import { Status } from "../../components/Status"
 import "./styles.css"
 
+import beep from "./../../../audio/beep.mp3";
+import cough from "./../../../audio/cough.mp3"
+
 const baseURL = 'ws://localhost:8080/chat';
 
 export class Chat extends React.Component {
@@ -107,7 +110,20 @@ export class Chat extends React.Component {
         const msg = JSON.parse(value);
         console.log(msg);
         count = msg.usercount
+
+        if (msg.type === 0) {
+            this.playSound(beep)
+        } else {
+            this.playSound(cough)
+        }
+
         let messages = this.state.messages.concat([msg]);
         this.setState({messages, count});
+    }
+
+    playSound(src) {
+        new Audio(src).play().catch(err => {
+            console.log(err)
+        })
     }
 }

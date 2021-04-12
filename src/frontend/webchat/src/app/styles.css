@@ -1,0 +1,21 @@
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+ul li {
+    display: inline;
+    padding: 10px;
+}
+li a {
+    width: 50px;
+    color: purple;
+    padding: 5px 5px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+    border-radius: 10px;
+}
