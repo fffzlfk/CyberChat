@@ -7,6 +7,17 @@
 
 > Go实现的基于WebSocket的实时聊天室
 
+## Description
+
+- 采用WebSocket进行通信
+- 后端使用Golang编写
+- 前端使用React.JS
+
+## Required Tools
+
+1. go or Docker Engine
+2. npm
+
 ## Install Backend With Docker
 
 ### Pull image from the command line
