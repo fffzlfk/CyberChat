@@ -6,7 +6,6 @@ import (
 )
 
 var (
-	// 命令行参数解析来指定端口号，默认是8080
 	port = flag.String("p", ":8080", "set port")
 )
 

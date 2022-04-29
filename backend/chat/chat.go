@@ -90,7 +90,7 @@ func (c *Chat) disconnect(user *User) {
 }
 
 func Start(port string) {
-	fmt.Println("Chat listening on http://localhost", port)
+	fmt.Printf("Chat listening on http://localhost%s\n", port)
 
 	c := &Chat{
 		users:    make(map[string]*User),
